@@ -1,0 +1,151 @@
+The timer always displays the remaining time in seconds.
+		testActivityScenarioRun()
+				Initially, timer is set to 10, wait for 5 seconds and assert that the remaining time is 5 seconds
+
+
+
+
+Initially, the timer is stopped and the (remaining) time is zero.
+		testPreConditions
+				Initially, assert that the timer is set in stopped state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three and the Beep Counter variable is set to zero
+
+
+
+
+If the button is pressed when the timer is stopped, the time is incremented by one up to a preset maximum of 99. (The button acts as an increment button.)
+		testIncrementCounter()
+				Assert that the timer is set in stopped state by checking if the Counter variable is set to Zero and the Tick variable is set to three. 
+				Then simulate pressing button n times. Assert counter equals number of times the button was pressed.
+
+
+
+
+If the time is greater than zero and three seconds elapse from the most recent time the button was pressed, then the timer beeps once and starts running.
+		testIfbeepworksAfter3Seconds
+				Assert that the timer is set in stopped state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				Then simulate pressing button for 5 times
+				Assert that the Counter value is set to 5
+				wait for 3 seconds
+				Assert that the beep counter is set to one
+		
+		testIfCounterIsRunning
+				Assert that the timer is set in stopped state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				Then simulate pressing button for 5 times
+				Assert that the Counter value is set to 5
+				wait for 3 seconds
+				Assert that the beep counter is set to one
+				Wait for 5 seconds
+				assert that the counter value has reduced by 5.
+
+
+
+
+Note: if the time reaches the preset maximum of 99 the timer acts the same way as if three seconds had elapsed - it beeps and starts running.
+		testIncrementCounterMaxLimit()
+				Assert that the timer is set in stopped state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				Then simulate pressing button to the Max Limit of 99 times. 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Wait for 5 seconds
+				Assert that the Counter value has reduced and the counter value now is 94. 	
+
+
+
+
+While running, the timer subtracts one from the time for every second that elapses.
+		testCountdown()
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				simulate pressing button n times without delay. 
+				Assert counter equals number of times the button was pressed. 
+				Simulate 6-second delay (1 second after the 3-second timeout occurs). 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Assert that the Counter value is reduced by two.
+
+
+
+
+In particular, the display only changes 1 second after the 3-second timeout occurs or the timer value reaches 99.
+		testForCountDownStartAfterOneSecond()
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				simulate pressing button n times without delay. 
+				Assert counter equals number of times the button was pressed. 
+				Simulate 5-second delay (1 second after the 3-second timeout occurs). 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Assert that the Counter value is reduced by one
+		
+
+
+
+If the timer is running and the button is pressed, the timer stops and the time is reset to zero. (The button acts as a cancel button.)
+		testCancelCountdown()
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				simulate pressing button n times without delay. 
+				Assert Counter equals number of times the button was pressed. 
+				Simulate 6-second delay (1 second after the 3-second timeout occurs). 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Assert that the Counter value is reduced by two.
+				Simulate pressing button
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+
+
+
+
+If the timer is running and the time reaches zero by itself (without the button being pressed), then the timer stops and the alarm starts beeping continually and indefinitely.
+		TestIfAlarmCounterIncrements()
+				Assert that the Alarm counter increments for every tick event in Clock Model
+
+		testCountdownComplete()
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				simulate pressing button n times without delay. 
+				Assert Counter equals number of times the button was pressed. 
+				Simulate 6-second delay (1 second after the 3-second timeout occurs). 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Assert that the Counter value is reduced by two.
+				Wait for n-2 seconds
+				Assert that the beep counter value is set to One (indicating that it beeped once)
+				Wait for 5 seconds
+				Assert that the beep counter value is set to six (indicating that it is beeping continiously).	
+
+				
+
+
+If the alarm is sounding and the button is pressed, the alarm stops sounding; the timer is now stopped and the (remaining) time is zero. (The button acts as a stop button.)
+		TestOnReturnToStopState()
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				simulate pressing button n times without delay. 
+				Assert Counter equals number of times the button was pressed. 
+				Simulate 6-second delay (1 second after the 3-second timeout occurs). 
+				Assert that the beep Counter is set to One (indicating that it beeped once) and 
+				Assert that the Counter value is reduced by two.
+				Wait for n-2 seconds
+				Assert that the beep counter value is set to One (indicating that it beeped once)
+				Wait for 5 seconds
+				Assert that the beep counter value is set to six (indicating that it is beeping continiously).
+				Simulate pressing button
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+
+
+
+
+The timer handles rotation by continuing in its current state. 
+				Assert that the timer is set in stopeed state by checking if the Counter variable is set to Zero
+				and the Tick variable is set to three. 
+				Then simulate pressing button n times. Assert counter equals number of times the button was pressed.
+				Rotate the device.
+				Assert that the counter equals the number of times the button was pressed.
+				Tick variable is set to Three.
+				wait for 5 seconds
+				Assert that the counter value is reduced by one.
+				rotate the device.
+				Assert that the counter value is still the same.
+				Tick variable is set to Zero.
